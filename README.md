@@ -17,7 +17,7 @@ Scroll progress indicators (for Scroll blocks)
 1. create Composition block as described above
 2. add Reference block to Composition block at the end of each block where progress indicators shall be used
 
-### Usage
+#### Usage
 1. add classes 'scrl' and 'scrl-<ID>' (fx 'scrl-a') to targeted Scroll blocks
 2. create Composition block for progress display area and add class 'sbar-<ID>' (fx 'sbar-a')
 3. create another Composition block within the one just created as progress display thumb / fill and add class 'sbar-thumb' 
