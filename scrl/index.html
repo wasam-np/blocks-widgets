@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            #scrollbox_1 {
+                position: absolute;
+                top: 0px;
+                right: 10px;
+                background-color: bisque;
+                width: 200px;
+                height: 200px;
+                overflow-y: auto;
+                overflow-x: hidden;
+            }
+            /* #scrollbox_1::-webkit-scrollbar {
+                display: none;
+            } */
+            #scrollbar {
+                position: absolute;
+                top: 0px;
+                right: 10px;
+                width: 20px;
+                height: 200px;
+                background-color: rgba(255, 255, 255, 0.25);
+            }
+            #scrollbar-h {
+                position: absolute;
+                top: 300px;
+                right: 10px;
+                width: 200px;
+                height: 20px;
+                background-color: rgba(255, 255, 255, 0.25);
+            }
+            #scrollbar-f {
+                position: absolute;
+                top: 340px;
+                right: 10px;
+                width: 200px;
+                height: 20px;
+                background-color: rgba(255, 255, 255, 0.25);
+            }
+            #scrollthumb {
+                position: absolute;
+                top:0px;
+                left:0px;
+                width: 20px;
+                height: 20px;
+                background-color: black;
+            }
+            .red {
+                background-color: red;
+            }
+        </style>
+    </head>
+    <object>
+            <div id='scrollbox_1' class='outer-box scrl scrl-a'>
+                <div class='inner-box'>
+                    scroll sender<br/>scroll sender<br/>scroll sender<br/>scroll sender<br/>scroll sender<br/>scroll sender<br/>scroll sender<br/>scroll sender<br/>
+                    scroll sender<br/>scroll s e n d e r s c r o l l s e n d e r s c r o l l s e n d e r<br/>scroll sender<br/>scroll sender<br/>scroll sender<br/>scroll sender<br/>scroll sender<br/>scroll sender<br/>
+                    scroll sender<br/>scroll sender<br/>scroll sender<br/>scroll sender<br/>scroll sender<br/>scroll sender<br/>scroll sender<br/>scroll sender<br/>
+                    scroll sender<br/>scroll sender<br/>scroll sender<br/>scroll sender<br/>scroll sender<br/>scroll sender<br/>scroll sender<br/>scroll sender<br/>
+                    scroll sender<br/>scroll sender<br/>scroll sender<br/>scroll sender<br/>scroll sender<br/>scroll sender<br/>scroll sender<br/>scroll sender<br/>
+                    scroll sender<br/>scroll sender<br/>scroll sender<br/>scroll sender<br/>scroll sender<br/>scroll sender<br/>scroll sender<br/>scroll sender<br/>
+                    scroll sender<br/>scroll sender<br/>scroll sender<br/>scroll sender<br/>scroll sender<br/>scroll sender<br/>scroll sender<br/>scroll sender<br/>
+                    scroll sender<br/>scroll sender<br/>scroll sender<br/>scroll sender<br/>scroll sender<br/>scroll sender<br/>scroll sender<br/>scroll sender<br/>
+                    
+                </div>    
+            </div>
+            <div id='scrollbar' class='sbar-a'>
+                <div id='scrollthumb' class='sbar-thumb'></div>
+            </div>
+            <div id = 'scrollbar-h' class='sbar-a'>
+                <div id='scrollthumb' class='sbar-thumb'></div>
+            </div>
+            <div id = 'scrollbar-f' class='sbar-a sbar-fill'>
+                <div id='scrollthumb' class='sbar-thumb'>fill</div>
+            </div>
+            
+        <object name="widget" type="text/html" data="widget.html"></object>
+    </body>
+</html>

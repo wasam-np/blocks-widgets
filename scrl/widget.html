@@ -1,0 +1,103 @@
+
+<script type='text/javascript'>
+    var doc = parent.document;
+    const scrollSenderClass = 'scrl';
+    const scrollSenderPrefix = scrollSenderClass + '-';
+    const scrollReceiverClass = 'sbar';
+    const scrollReceiverPrefix = scrollReceiverClass + '-';
+    const scrollReciverThumbClass = scrollReceiverClass + '-thumb';
+    const scrollReceiverUseFill = scrollReceiverClass + '-fill';
+    var senders = doc.getElementsByClassName(scrollSenderClass);
+    for (let i = 0; i < senders.length; i++) {
+        const sender = senders[i];
+        const cl = getClassStartingWith(sender, scrollSenderPrefix)
+        const id = cl.substring(scrollSenderPrefix.length, cl.length);
+        const receivers = doc.getElementsByClassName(scrollReceiverPrefix + id);
+        for (let e = 0; e < receivers.length; e++)
+        {
+            const receiver = receivers[e];
+            const receiverThumb = getThumb(receiver);
+            if (!receiverThumb) continue;
+            const frameHeight = sender.clientHeight;
+            const frameWidth = sender.clientWidth;
+            const contentHeight = sender.scrollHeight;
+            const contentWidth = sender.scrollWidth;
+            const scrollDistanceY = contentHeight - frameHeight;
+            const scrollDistanceX = contentWidth - frameWidth;
+            const barHeight = receiver.clientHeight;
+            const barWidth = receiver.clientWidth;
+            const thumbHeight = receiverThumb.clientHeight;
+            const thumbWidth = receiverThumb.clientWidth;
+            const barDistanceY = barHeight - thumbHeight;
+            const barDistanceX = barWidth - thumbWidth;
+            const useFill = hasClass(receiver, scrollReceiverUseFill);
+            const useVertical = barHeight > barWidth;
+            const useHorizontal =  !useVertical;
+            if (useFill)
+            {
+                if (useVertical) receiverThumb.style.top = '0px';
+                if (useHorizontal) receiverThumb.style.left = '0px';
+                sender.addEventListener('scroll', function () {
+                    var progress = sender.scrollTop / scrollDistanceY;
+                    if (useVertical) receiverThumb.style.height = (barHeight * progress) + 'px';
+                    if (useHorizontal) receiverThumb.style.width = (barWidth * progress) + 'px';
+                });
+            }
+            else
+            {
+
+                sender.addEventListener('scroll', function () {
+                    var progress = sender.scrollTop / scrollDistanceY;
+                    if (useVertical) receiverThumb.style.top = (barDistanceY * progress) + 'px';
+                    if (useHorizontal)receiverThumb.style.left = (barDistanceX * progress) + 'px';
+                });
+            }
+            
+            
+        }   
+        sender.dispatchEvent(new CustomEvent('scroll'));
+    }
+    function getThumb (element)
+    {
+        for (let i = 0; i < element.children.length; i++)
+        {
+            var child = element.children[i];
+
+            if (hasClass(child, scrollReciverThumbClass)) return child;
+        }
+        return null;
+    }
+    function hasClass (element, className)
+    {
+        var classes = getClasses(element);
+        for (let i = 0; i < classes.length; i++) {
+            const cl = classes[i];
+            if (cl == className) return true;
+        }
+        return false;
+    }
+    function getClasses (element)
+    {
+        var classes = element.className;
+        return classes.split(' ');
+    }
+    function getClassStartingWith (element, prefix)
+    {
+        var classes = getClasses(element);
+        for (let i = 0; i < classes.length; i++) {
+            const cl = classes[i];
+            if (cl.startsWith(prefix))
+            {
+                return cl;
+            }
+        }
+        return '';
+    }
+    function getClassEnding (element, prefix)
+    {
+        var wholeClass = getClassStartingWith(element, prefix);
+        if (wholeClass != '') return wholeClass.substring(prefix.length, wholeClass.length);
+        return '';
+    }
+
+    </script>

@@ -1,0 +1,70 @@
+<script type='text/javascript'>
+    var doc = parent.document;
+    var tapSenderClass = 'taps';
+    var tapSenderPrefix = tapSenderClass + '-';
+    var tapReceiverClass = 'tapr';
+    var tapReceiverPrefix = tapReceiverClass + '-';
+    var tapReceiverClassPrefix = tapReceiverClass + '-c-';
+    var senders = doc.getElementsByClassName(tapSenderClass);
+    for (let i = 0; i < senders.length; i++) {
+        const sender = senders[i];
+        const cl = getClassStartingWith(sender, tapSenderPrefix)
+        const id = cl.substring(tapSenderPrefix.length, cl.length);
+        const receivers = doc.getElementsByClassName(tapReceiverPrefix + id);
+        for (let e = 0; e < receivers.length; e++) {
+            const receiver = receivers[e];
+            const classToAdd = getClassEnding(receiver, tapReceiverClassPrefix);
+            if (classToAdd != '')
+            {
+                receiver.classList.remove(classToAdd);
+                sender.addEventListener('pointerdown', function () { receiver.classList.add(classToAdd); });
+                sender.addEventListener('pointerup', function () { receiver.classList.remove(classToAdd); });
+                sender.addEventListener('mouseout', function () { receiver.classList.remove(classToAdd); });
+                sender.addEventListener('pointerleave', function () { receiver.classList.remove(classToAdd); });
+            }
+            else
+            {
+                const hasTapHide = hasClass(receiver, tapReceiverPrefix + 'hide');
+                const onDown = hasTapHide ? 'none' : 'block';
+                const onUp = hasTapHide ? 'block' : 'none';
+                receiver.style.display = onUp;
+                sender.addEventListener('pointerdown', function () { receiver.style.display = onDown; });
+                sender.addEventListener('pointerup', function () { receiver.style.display = onUp; });
+                sender.addEventListener('mouseout', function () { receiver.style.display = onUp; });
+            }
+        }
+    }
+    function hasClass (element, className)
+    {
+        var classes = getClasses(element);
+        for (let i = 0; i < classes.length; i++) {
+            const cl = classes[i];
+            if (cl == className) return true;
+        }
+        return false;
+    }
+    function getClasses (element)
+    {
+        var classes = element.className;
+        return classes.split(' ');
+    }
+    function getClassStartingWith (element, prefix)
+    {
+        var classes = getClasses(element);
+        for (let i = 0; i < classes.length; i++) {
+            const cl = classes[i];
+            if (cl.startsWith(prefix))
+            {
+                return cl;
+            }
+        }
+        return '';
+    }
+    function getClassEnding (element, prefix)
+    {
+        var wholeClass = getClassStartingWith(element, prefix);
+        if (wholeClass != '') return wholeClass.substring(prefix.length, wholeClass.length);
+        return '';
+    }
+
+    </script>
