@@ -3,10 +3,10 @@
     const doc = parent.document;
     scripts.forEach(stl => { loadJS(stl) });
     function loadJS (stl) {
-        const script = doc.createElement('script');
+        const script = document.createElement('script');
         script.type = 'text/javascript';
         script.src = '/public/js/' + stl;
         script.async = false;
-        doc.head.appendChild(script);
+        document.head.appendChild(script);
     }
 </script>
