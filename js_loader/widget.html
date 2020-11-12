@@ -2,8 +2,8 @@
     const scriptsToLoad = ['np-effects.js'];
     const doc = parent.document;
     scriptsToLoad.forEach(scriptToLoad => {
-        var script = document.createElement('script');    
+        var script = doc.createElement('script');    
         script.src = '/public/js/' + scriptToLoad;
-        document.head.appendChild(script);  
+        doc.head.appendChild(script);  
     });
 </script>
