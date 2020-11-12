@@ -1,9 +1,12 @@
 <script type='text/javascript'>
-    const scriptsToLoad = ['np-effects.js'];
+    const scripts = ['np-effects.js', 'timeline.js'];
     const doc = parent.document;
-    scriptsToLoad.forEach(scriptToLoad => {
-        var script = doc.createElement('script');    
-        script.src = '/public/js/' + scriptToLoad;
-        doc.head.appendChild(script);  
-    });
+    scripts.forEach(stl => { loadJS(stl) });
+    function loadJS (stl) {
+        const script = doc.createElement('script');
+        script.type = 'text/javascript';
+        script.src = '/public/js/' + stl;
+        script.async = false;
+        doc.head.appendChild(script);
+    }
 </script>
